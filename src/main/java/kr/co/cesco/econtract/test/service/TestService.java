@@ -1,0 +1,77 @@
+package kr.co.cesco.econtract.test.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.co.cesco.econtract.test.domain.Customer;
+import kr.co.cesco.econtract.test.domain.CustomerReq;
+import kr.co.cesco.econtract.test.domain.CustomerRes;
+import kr.co.cesco.econtract.test.dto.StateDto;
+import kr.co.cesco.econtract.test.mapper.EmpMapper;
+import kr.co.cesco.econtract.test.mapper.SalesMapper;
+import kr.co.cesco.econtract.web.users.domain.Employee;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class TestService {
+	
+	private final EmpMapper empRepository;
+	private final SalesMapper salesRepository;
+	private final ObjectMapper objectMapper;
+	
+	public List<Employee> findEmps() {
+		return empRepository.findEmps();
+	}
+	
+	public List<Customer> findCustomers() {
+		return salesRepository.findCustomers();
+	}
+	
+	public List<Customer> findCustomers2() {
+		return salesRepository.findCustomers2();
+	}
+	
+	public List<Map<String, Object>> findCustomers3() {
+		return salesRepository.findCustomers3();
+	}
+	
+	public List<Customer> findCustomers4() {
+		
+		List<Customer> customers = new ArrayList<>();
+		List<?> customerMaps = salesRepository.findCustomers3(); // from hashmap
+		
+		customerMaps.forEach(map -> {
+			Customer customer = objectMapper.convertValue(map, Customer.class);
+			customers.add(customer);
+		});
+		
+		return customers; // to pojo
+	}
+	
+	public List<Customer> getCustomersByState(String state) {
+		return salesRepository.getCustomersByState(state);
+	}
+	
+	public List<Customer> getCustomersByState2(String state) {
+		return salesRepository.getCustomersByState2(state);
+	}
+	
+	public List<Customer> getCustomersByState3(StateDto state) {
+		return salesRepository.getCustomersByState3(state);
+	}
+	
+	public List<CustomerRes.CustomerDto> getCustomersByState4(CustomerReq.SearchDto searchDto) {
+		return salesRepository.getCustomersByState4(searchDto);
+	}
+	
+	
+
+}
