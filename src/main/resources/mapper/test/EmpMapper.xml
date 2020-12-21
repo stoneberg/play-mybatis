@@ -25,7 +25,7 @@
     </select>
     
         <!-- Get All Employees2 -->
-    <select id="findEmployees" parameterType="kr.co.cesco.econtract.test.domain.EmployeeReq$SearchDto" resultType="kr.co.cesco.econtract.test.domain.EmployeeRes$ResultDto">
+    <select id="findEmployees" parameterType="SearchDto" resultType="ResultDto">
         /*EmpMapper.findEmployees*/
         SELECT 
             empNo,
