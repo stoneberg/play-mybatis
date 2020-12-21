@@ -7,7 +7,7 @@
     @Description : sales queries
     @Author : stoneberg
 -->
-<mapper namespace="kr.co.cesco.econtract.test.mapper.SalesRepository"> 
+<mapper namespace="kr.co.cesco.econtract.test.mapper.SalesMapper"> 
     
     <!-- Get All Customers -->
     <select id="findCustomers" resultType="Customer">
@@ -25,7 +25,7 @@
 		FROM sales.customers
     </select>
     
-     <!-- 프로시저 호출하기 -->
+    <!-- 프로시저 호출하기 -->
     <select id="findCustomers2" resultType="Customer" statementType="CALLABLE">
         { CALL dbo.getCustomers }
     </select>
@@ -44,11 +44,24 @@
             state,
             zip_code as zipCode
         FROM sales.customers
-    </select>
+    </select>    
     
-    <!-- 프로시저 호출하기 -->
-    <select id="getCustomersByState" parameterType="java.lang.String" resultType="Customer" statementType="CALLABLE">
-        { CALL dbo.getCustomersByState(#{state, mode=IN, jdbcType=VARCHAR}) }
+    
+    <!-- Get All Customers By State -->
+    <select id="findCustomersByState" parameterType="java.lang.String" resultType="Customer">
+        /*SalesMapper.findCustomersByState*/
+        SELECT 
+            customer_id,
+            first_name,
+            last_name,
+            phone,
+            email,
+            street,
+            city,
+            state,
+            zip_code
+        FROM sales.customers
+        WHERE state = #{state}
     </select>
 
 </mapper>

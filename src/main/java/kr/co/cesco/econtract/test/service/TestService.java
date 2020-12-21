@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.cesco.econtract.test.domain.Customer;
 import kr.co.cesco.econtract.test.domain.CustomerReq;
 import kr.co.cesco.econtract.test.domain.CustomerRes;
+import kr.co.cesco.econtract.test.domain.Employee;
+import kr.co.cesco.econtract.test.domain.EmployeeReq;
+import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.mapper.EmpMapper;
 import kr.co.cesco.econtract.test.mapper.SalesMapper;
-import kr.co.cesco.econtract.web.users.domain.Employee;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,9 +33,14 @@ public class TestService {
 		return empRepository.findEmps();
 	}
 	
+	public List<ResultDto> getEmployees(EmployeeReq.SearchDto searchDto) {
+		return empRepository.findEmployees(searchDto);
+	}
+	
 	public List<Customer> findCustomers() {
 		return salesRepository.findCustomers();
 	}
+	
 	
 	public List<Customer> findCustomers2() {
 		return salesRepository.findCustomers2();
@@ -42,7 +49,7 @@ public class TestService {
 	public List<Map<String, Object>> findCustomers3() {
 		return salesRepository.findCustomers3();
 	}
-	
+
 	public List<Customer> findCustomers4() {
 		
 		List<Customer> customers = new ArrayList<>();
@@ -57,7 +64,7 @@ public class TestService {
 	}
 	
 	public List<Customer> getCustomersByState(String state) {
-		return salesRepository.getCustomersByState(state);
+		return salesRepository.findCustomersByState(state);
 	}
 	
 	public List<Customer> getCustomersByState2(String state) {

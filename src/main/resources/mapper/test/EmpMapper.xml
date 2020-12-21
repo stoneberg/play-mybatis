@@ -24,4 +24,20 @@
 		FROM dbo.emp
     </select>
     
+        <!-- Get All Employees2 -->
+    <select id="findEmployees" parameterType="kr.co.cesco.econtract.test.domain.EmployeeReq$SearchDto" resultType="kr.co.cesco.econtract.test.domain.EmployeeRes$ResultDto">
+        /*EmpMapper.findEmployees*/
+        SELECT 
+            empNo,
+            ename,
+            job,
+            mgr,
+            hireDate,
+            sal,
+            comm,
+            deptNo
+        FROM dbo.emp
+        WHERE ename = #{ename}
+    </select>
+    
 </mapper>

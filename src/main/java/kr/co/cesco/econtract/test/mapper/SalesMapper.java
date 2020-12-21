@@ -19,11 +19,13 @@ public interface SalesMapper {
 
 	List<Customer> findCustomers();
 
+	// call procedure
 	List<Customer> findCustomers2();
 
+	// return hashmap
 	List<Map<String, Object>> findCustomers3();
 
-	List<Customer> getCustomersByState(@Param("state") String state);
+	List<Customer> findCustomersByState(@Param("state") String state);
 
 	@Select(value = "{CALL getCustomersByState(#{state, mode=IN, javaType=String})}")
 	@Options(statementType = StatementType.CALLABLE)
