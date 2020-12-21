@@ -31,7 +31,7 @@
     </select>
     
     <!-- Get All Customers3 -->
-    <select id="findCustomers3" resultType="java.util.HashMap">
+    <select id="findCustomers3" resultType="hashmap">
         /*SalesMapper.findCustomers3*/
         SELECT 
             customer_id as customerId,
@@ -48,7 +48,7 @@
     
     
     <!-- Get All Customers By State -->
-    <select id="findCustomersByState" parameterType="java.lang.String" resultType="Customer">
+    <select id="findCustomersByState" parameterType="string" resultType="Customer">
         /*SalesMapper.findCustomersByState*/
         SELECT 
             customer_id,
