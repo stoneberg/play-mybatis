@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.co.cesco.econtract.test.domain.BrandReq;
 import kr.co.cesco.econtract.test.domain.Customer;
 import kr.co.cesco.econtract.test.domain.CustomerReq;
 import kr.co.cesco.econtract.test.domain.Employee;
 import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
+import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.dto.Person;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 public class TestApiController {
 	
 	private final TestService testService;
+	
+	// Select ===================================================================
 	
     @GetMapping("employees")
     public List<Employee> getEmps() {
@@ -87,6 +92,32 @@ public class TestApiController {
     	log.info("@getCustomersByState4===================>");
     	return testService.getCustomersByState4(searchDto);
     }
+    
+    @PostMapping("person")
+    public Integer addPerson(@RequestBody Person person) {
+    	log.info("@addPerson===================>{}", person);
+    	 testService.addPerson(person);
+    	 log.info("@@addPerson=================>{}", person.getId());
+    	 return person.getId();
+    }
+    
+    @GetMapping("person/{id}")
+    public Person getPerson(@PathVariable Integer id) {
+    	log.info("@getPerson===================>");
+    	return testService.getPerson(id);
+    }
+    
+    
+    // Insert =============================================================================
+    
+    @PostMapping("brands")
+    public int createBrand(@RequestBody BrandReq.CreateDto createDto) {
+    	log.info("@createBrand===================>");
+    	return testService.createBrand(createDto);
+    }
+    
+    
+   
     
     
 }

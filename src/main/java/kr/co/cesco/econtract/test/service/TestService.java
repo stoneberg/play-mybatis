@@ -1,6 +1,7 @@
 package kr.co.cesco.econtract.test.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,12 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.cesco.econtract.test.domain.BrandReq;
 import kr.co.cesco.econtract.test.domain.Customer;
 import kr.co.cesco.econtract.test.domain.CustomerReq;
 import kr.co.cesco.econtract.test.domain.CustomerRes;
 import kr.co.cesco.econtract.test.domain.Employee;
 import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
+import kr.co.cesco.econtract.test.domain.Order;
+import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.dto.Person;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.mapper.EmpMapper;
 import kr.co.cesco.econtract.test.mapper.SalesMapper;
@@ -28,6 +33,8 @@ public class TestService {
 	private final EmpMapper empRepository;
 	private final SalesMapper salesRepository;
 	private final ObjectMapper objectMapper;
+	
+	// Select =============================================================
 	
 	public List<Employee> findEmps() {
 		return empRepository.findEmps();
@@ -78,6 +85,44 @@ public class TestService {
 	public List<CustomerRes.CustomerDto> getCustomersByState4(CustomerReq.SearchDto searchDto) {
 		return salesRepository.getCustomersByState4(searchDto);
 	}
+	
+	
+	public void addPerson(Person person) {
+		salesRepository.addPerson(person);;
+	}
+	
+	public Person getPerson(Integer id) {
+		return salesRepository.getPerson(id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Insert =============================================================
+	
+	public int createBrand(BrandReq.CreateDto createDto) {
+		return salesRepository.insertBrand(createDto);
+	}
+
+
+
+
+
+	
 	
 	
 
