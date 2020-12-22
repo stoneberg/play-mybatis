@@ -16,6 +16,7 @@ import kr.co.cesco.econtract.test.domain.Employee;
 import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
 import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.dto.PeopleDto;
 import kr.co.cesco.econtract.test.dto.Person;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.service.TestService;
@@ -93,6 +94,7 @@ public class TestApiController {
     	return testService.getCustomersByState4(searchDto);
     }
     
+    
     @PostMapping("person")
     public Integer addPerson(@RequestBody Person person) {
     	log.info("@addPerson===================>{}", person);
@@ -100,6 +102,23 @@ public class TestApiController {
     	 log.info("@@addPerson=================>{}", person.getId());
     	 return person.getId();
     }
+    
+    @PostMapping("person2")
+    public Integer addPerson2(@RequestBody PeopleDto.PersonDto person) {
+    	log.info("@addPerson2===================>{}", person);
+    	 testService.addPerson2(person);
+    	 log.info("@@addPerson2=================>{}", person.getId());
+    	 return person.getId();
+    }
+    
+    @PostMapping("person3")
+    public Integer addPerson3(@RequestBody PeopleDto.PersonDto person) {
+    	log.info("@addPerson3===================>{}", person);
+    	 testService.addPerson3(person);
+    	 log.info("@@addPerson3=================>{}", person.getId());
+    	 return person.getId();
+    }
+    
     
     @GetMapping("person/{id}")
     public Person getPerson(@PathVariable Integer id) {

@@ -18,6 +18,7 @@ import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
 import kr.co.cesco.econtract.test.domain.Order;
 import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.dto.PeopleDto;
 import kr.co.cesco.econtract.test.dto.Person;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.mapper.EmpMapper;
@@ -89,6 +90,15 @@ public class TestService {
 	
 	public void addPerson(Person person) {
 		salesRepository.addPerson(person);;
+	}
+	
+	
+	public void addPerson2(PeopleDto.PersonDto person) {
+		salesRepository.addPerson2(person);;
+	}
+	
+	public void addPerson3(PeopleDto.PersonDto person) {
+		salesRepository.addPerson3(person);;
 	}
 	
 	public Person getPerson(Integer id) {

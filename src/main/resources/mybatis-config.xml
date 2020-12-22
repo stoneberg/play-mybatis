@@ -38,6 +38,7 @@
 		<typeAlias alias="SearchDto" type="kr.co.cesco.econtract.test.domain.EmployeeReq$SearchDto" />
 		<typeAlias alias="ResultDto" type="kr.co.cesco.econtract.test.domain.EmployeeRes$ResultDto" />
 		<typeAlias alias="Customer" type="kr.co.cesco.econtract.test.domain.Customer" />
+		<typeAlias alias="PersonDto" type="kr.co.cesco.econtract.test.dto.PeopleDto$PersonDto" />
 	</typeAliases>
 
 </configuration>

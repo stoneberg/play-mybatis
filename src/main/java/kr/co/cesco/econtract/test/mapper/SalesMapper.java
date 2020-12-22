@@ -14,6 +14,7 @@ import kr.co.cesco.econtract.test.domain.BrandReq.CreateDto;
 import kr.co.cesco.econtract.test.domain.Customer;
 import kr.co.cesco.econtract.test.domain.CustomerReq;
 import kr.co.cesco.econtract.test.domain.CustomerRes;
+import kr.co.cesco.econtract.test.dto.PeopleDto;
 import kr.co.cesco.econtract.test.dto.Person;
 import kr.co.cesco.econtract.test.dto.StateDto;
 
@@ -46,6 +47,14 @@ public interface SalesMapper {
 	
 	
 	void addPerson(Person person);
+	
+	void addPerson2(PeopleDto.PersonDto person);
+	
+	@Insert(value = "{CALL test.addPerson(#{name, mode=IN, javaType=String}, "
+			+ "#{age, mode=IN, javaType=Integer}, "
+			+ "#{id, mode=OUT, javaType=Integer, jdbcType=INTEGER})}")
+	@Options(statementType = StatementType.CALLABLE)
+	void addPerson3(PeopleDto.PersonDto person);
 	 
 	Person getPerson(Integer personId);
 	
