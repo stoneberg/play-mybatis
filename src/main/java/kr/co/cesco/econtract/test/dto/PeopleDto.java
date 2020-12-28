@@ -1,11 +1,13 @@
 package kr.co.cesco.econtract.test.dto;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 public class PeopleDto {
 	
 	@Data
-	public static class PersonDto {
+	public static class PersonDto implements Serializable {
 		private static final long serialVersionUID = 1L;
 		private Integer id;
 		private String name;

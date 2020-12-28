@@ -74,7 +74,6 @@
 	        #{id, mode=OUT, jdbcType=INTEGER}
         )}
     </insert>
-    
 
     <insert id="addPerson2" parameterType="PersonDto" statementType="CALLABLE">
         {call test.addPerson(
@@ -84,9 +83,9 @@
         )}
     </insert>
 
-    <select id="getPerson" parameterType="kr.co.cesco.econtract.test.dto.Person"
+    <select id="getPerson" parameterType="integer"
         statementType="CALLABLE" resultType="kr.co.cesco.econtract.test.dto.Person">
-        {call test.getPerson(#{id,mode=IN,jdbcType=INTEGER})}
+        {call test.getPerson(#{id, mode=IN, jdbcType=INTEGER})}
     </select>
 
 </mapper>

@@ -24,7 +24,7 @@
 		FROM dbo.emp
     </select>
     
-        <!-- Get All Employees2 -->
+    <!-- Get All Employees2 -->
     <select id="findEmployees" parameterType="SearchDto" resultType="ResultDto">
         /*EmpMapper.findEmployees*/
         SELECT 
