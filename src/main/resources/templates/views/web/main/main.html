@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layouts/client_layout">
+<!--
+#####################################################################################################
+#    @author  stoneberg
+#    @since   2020. 08. 15.
+#    @version 1.0.0                                                                                 
+#    @Description : main
+#####################################################################################################
+-->
+
+    <!-- page title -->
+    <th:block layout:fragment="title">
+        <title>Main</title>
+    </th:block>
+    
+    <!-- custom css -->
+    <th:block layout:fragment="css">
+	    <style th:inline="text">
+	    	.pledge-modal {
+	    		overflow-y: scroll;
+	    	}
+	    </style>
+    </th:block>
+    
+    <!-- custom top js -->
+    <th:block layout:fragment="topScript">
+        <script th:inline="javascript">
+        /*<![CDATA[*/
+        let thisPage = {};
+        thisPage['ctxPath'] = /*[[@{/}]]*/ '/';
+        thisPage['userRoles'] = /*[[${userRoles}]]*/ '';
+        thisPage['companyId'] = /*[[${companyId}]]*/ '';
+        /*]]>*/
+        </script>
+    </th:block>
+    
+    <!-- Contents div -->
+    <div id="contents" layout:fragment="contents">
+      <!-- hero 영역 -->
+      <div id="hero-wrap" class="hero-wrap">
+        <div class="pledge-list col">
+          <div class="list-item item01"> 
+            <span id="ongoingCount" class="badge num-badge"></span>
+            <div class="title">내가 받은 서약</div>
+            <a class="btn more-btn" th:href="@{/pledge-users/list(progsSttus='ongoing')}">
+              <span class="sound-only">더보기</span>
+            </a>
+          </div>
+          <div class="list-item item02">
+            <span id="progressCnt" class="badge num-badge"></span>
+            <div class="title">내가 요청한 서약</div>
+            <a class="btn more-btn" th:href="@{/pledges/list#progress}">
+              <span class="sound-only">더보기</span>
+            </a>
+          </div>
+          <div class="list-item item03">
+            <!-- <span class="badge num-badge">1</span> -->
+            <div class="title">서약 업무 요청하기</div>
+            <a class="btn more-btn" th:href="@{/pledges/list}">
+              <span class="sound-only">더보기</span>
+            </a>
+          </div>
+          <div class="list-item item04">
+            <!-- <span class="badge num-badge">1</span> -->
+            <div class="title">개인 양식 등록</div>
+            <a class="btn more-btn" th:href="@{/forms/create}">
+              <span class="sound-only">더보기</span>
+            </a>
+          </div>
+        </div>
+        <div class="main-banner col">
+          <span class="sub-title">고객과 함께 성장하는</span>
+          <h2 class="title">IT Transformation Leader</h2>
+          <div class="banner-image"></div>
+        </div>
+      </div>
+      <!-- //hero 영역  -->
+      
+      <!-- 협력사용 hero 영역 -->
+      <div id="hero-wrap2" class="hero-wrap">
+        <div class="pledge-list single-pledge-list col">
+          <div class="list-item item01">
+            <span id="ongoingCount2" class="badge num-badge"></span>
+            <div class="title">내가 받은 서약</div>
+            <a class="btn more-btn" th:href="@{/pledge-users/list(progsSttus='ongoing')}">
+              <span class="sound-only">더보기</span>
+            </a>
+          </div>
+        </div>
+        <div class="main-banner large-banner col">
+          <span class="sub-title">고객과 함께 성장하는</span>
+          <h2 class="title">IT Transformation Leader</h2>
+          <div class="banner-image"></div>
+        </div>
+      </div>
+      <!-- //협력사용 hero 영역 -->
+      <div class="main-board row">
+        <div class="col">
+          <div class="board-wrap">
+            <div class="board-title">
+              <h2>최근 요청 받은 서약</h2>
+              <a th:href="@{/pledge-users/list(progsSttus='ongoing')}" class="board-more-btn">더보기</a>
+            </div>
+            <div id="board-list" class="board-list">
+              <ul id="body-list">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="board-wrap">
+            <div class="board-title">
+              <h2>완료된 서약</h2>
+              <a th:href="@{/pledge-users/list(progsSttus='complete')}" class="board-more-btn">더보기</a>
+            </div>
+            <div id="board-list2" class="board-list">
+              <ul id="body-list2">
+                <!-- <li>
+                  <div class="title">
+                    <a href="">전사 공지사항 포털서비스 게시</a>
+                  </div>
+                  <div class="utillity">
+                    <span class="name">홍길동</span>
+                    <span class="date">2020.12.12</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <a href="">전사 공지사항 포털서비스 게시</a>
+                  </div>
+                  <div class="utillity">
+                    <span class="name">홍길동</span>
+                    <span class="date">2020.12.12</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="title">
+                    <a href="">전사 공지사항 포털서비스 게시</a>
+                  </div>
+                  <div class="utillity">
+                    <span class="name">홍길동</span>
+                    <span class="date">2020.12.12</span>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- MODAL -->
+	<!-- 전자서명하기 modal -->
+    <div id="mainPledgeM"class="modal fade pledge-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="pledge-modal-title" class="modal-title"></h5>
+            <button id="pdfDownload" type="button" class="btn b-round bg-blue">
+              <p>PDF 다운로드</p>
+            </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+              <span aria-hidden="true">닫기</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="fomr-view">
+            </div>
+            <div class="box-wrap pledge-box">
+              <!-- 전자서멍하기 서명전 노출되는영역 -->
+              <ul id="pledge-info" class="pledge-info">
+              </ul>
+            </div>
+            <div class="sign-wrap">
+              <p id="sign-date" class="date">
+              </p>
+              <div class="sign-area d-flex justify-content-end align-items-center">
+                <p>서약자 :  <span id="plaedge-username"></span></p>
+                <div class="sign-img">
+                  <img id="croppedImage" src="" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-wrap text-center">
+              <button type="button" id="signPledge" class="btn btn-default">
+                <p>서명하기</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //전자서명하기 modal -->
+    
+    <!-- alert modal -->
+    <div class="modal fade" id="alert" data-keyboard="false" tabindex="-1" 
+    	 aria-labelledby="staticBackdropLabel" aria-hidden="true" data-backdrop="static">
+      <div class="modal-dialog modal-default modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">알림</h5>
+          </div>
+          <div class="modal-body" id="alertContents">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-full" data-dismiss="modal">
+              <p>확인</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //alert modal -->
+    
+    <!-- confirm modal -->
+    <div id="confirm" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-default modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">알림</h5>
+          </div>
+          <div class="modal-body">
+			등록된 서명이 없습니다. 서명 등록 후 다시 시도해주세요.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default b-close btn-half" data-dismiss="modal">
+              <p>나중에하기</p>
+            </button>
+            <button type="button" id="saveCropImage" class="btn btn-default btn-half">
+              <p>서명등록하기</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- confirm modal -->   
+    </div>
+ 
+    <!-- end Contents div -->
+    
+
+    
+    <!-- custom bottom js -->
+    <th:block layout:fragment="bottomScript">
+        <script type="text/javascript" th:src="@{/js/views/client/main/main.js}"></script>
+    </th:block>
+
+</html>

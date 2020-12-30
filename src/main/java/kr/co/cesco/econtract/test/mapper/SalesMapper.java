@@ -50,6 +50,7 @@ public interface SalesMapper {
 	
 	void addPerson2(PeopleDto.PersonDto person);
 	
+	// out parameter는 반드시 jdbcType이 필요
 	@Insert(value = "{CALL test.addPerson(#{name, mode=IN, javaType=String}, "
 			+ "#{age, mode=IN, javaType=Integer}, "
 			+ "#{id, mode=OUT, javaType=Integer, jdbcType=INTEGER})}")

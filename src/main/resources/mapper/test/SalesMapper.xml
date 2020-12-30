@@ -66,7 +66,7 @@
         WHERE state = #{state}
     </select>
     
-    <!--  out param procedure -->
+    <!--  out param procedure : return value is in parameterType -->
     <insert id="addPerson" parameterType="kr.co.cesco.econtract.test.dto.Person" statementType="CALLABLE">
         {call test.addPerson(
 	        #{name, mode=IN, jdbcType=VARCHAR},
