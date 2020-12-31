@@ -2,8 +2,10 @@
 <configuration scanPeriod="60 seconds">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <!-- log file path -->
+    <!-- log value -->
     <property name="LOG_PATTERN" value="%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-3level %logger{5} - %msg %n"/>
+    <property name="TRACE_LOG_DIR" value="/logs/contract/trace" />
+    <property name="ERROR_LOG_DIR" value="/logs/contract/error" />
 
     <!-- Console Appender -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -12,54 +14,60 @@
         </encoder>
     </appender>
 
-    <!-- File Appender -->
-    <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/var/log/cesco/econtract.log</file>
+    <!-- Trace File Appender -->
+    <appender name="TRACE_FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"> 
+            <level>ERROR</level> 
+            <onMatch>DENY</onMatch> 
+            <onMismatch>ACCEPT</onMismatch> 
+        </filter>
+        <file>${TRACE_LOG_DIR}/contract-trace.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
         <rollingPolicy
-                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-            <fileNamePattern>/var/log/cesco/econtract.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${TRACE_LOG_DIR}/archive/contract-trace.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>100mb</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy> <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
-            <maxHistory>15</maxHistory> <!--<MinIndex>1</MinIndex> <MaxIndex>10</MaxIndex>-->
+            <maxHistory>30</maxHistory> <!--<MinIndex>1</MinIndex> <MaxIndex>10</MaxIndex>-->
         </rollingPolicy>
     </appender>
+    
+     <!-- Error File Appender -->
+    <appender name="ERROR_FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+         <filter class="ch.qos.logback.classic.filter.LevelFilter"> 
+            <level>ERROR</level> 
+            <onMatch>ACCEPT</onMatch> 
+            <onMismatch>DENY</onMismatch> 
+        </filter>   
+        <file>${ERROR_LOG_DIR}/contract-error.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+           <fileNamePattern>${TRACE_LOG_DIR}/archive/contract-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
+                <maxFileSize>100mb</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy> <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory> <!--<MinIndex>1</MinIndex> <MaxIndex>10</MaxIndex>-->
+        </rollingPolicy>
+    </appender>   
 
     <!-- local -->
     <springProfile name="local">
         <logger name="kr.co.cesco.econtract" level="INFO" additivity="false">
             <appender-ref ref="STDOUT" />
+            <appender-ref ref="TRACE_FILEOUT" />
+            <appender-ref ref="ERROR_FILEOUT" />
         </logger>
 
-        <logger name="org.springframework.web" level="INFO" additivity="false">
+        <logger name="org.springframework" level="INFO" additivity="false">
             <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.core" level="ERROR" additivity="false">
-            <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.beans" level="ERROR" additivity="false">
-            <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.context" level="ERROR" additivity="false">
-            <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.security" level="INFO" additivity="false">
-            <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.tx" level="ERROR" additivity="false">
-            <appender-ref ref="STDOUT" />
-        </logger>
-
-        <logger name="org.springframework.jdbc" level="ERROR" additivity="false">
-            <appender-ref ref="STDOUT" />
+            <appender-ref ref="TRACE_FILEOUT" />
+            <appender-ref ref="ERROR_FILEOUT" />
         </logger>
 
         <logger name="org.springframework.transaction.interceptor" level="ERROR" additivity="false">
@@ -97,7 +105,7 @@
 
         <root level="ERROR">
             <appender-ref ref="STDOUT" />
-            <appender-ref ref="FILEOUT" />
+            <appender-ref ref="ERROR_FILEOUT" />
         </root>
         
     </springProfile>

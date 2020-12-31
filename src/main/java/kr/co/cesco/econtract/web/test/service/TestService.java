@@ -36,6 +36,16 @@ public class TestService {
 	private final ProductMapper productMapper;
 	private final ObjectMapper objectMapper;
 	
+	// Error =============================================================
+	
+	public List<Employee> findError() {
+		if (true) {
+			log.error("@findError=====================>");
+			throw new RuntimeException("My Custom Error has ocurred!");
+		}
+		return empRepository.findEmps();
+	}
+	
 	// Select =============================================================
 	
 	public List<Employee> findEmps() {

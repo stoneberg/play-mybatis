@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * LogAspect
+ * LogAdvice
  */
 @Aspect
 @Component
@@ -49,11 +50,11 @@ public class LogAdvice {
      * @return
      * @throws Throwable
      */
-    @Around("execution(* kr.co.cesco.econtract.*.controller.*.*(..)) "
+    @Around("execution(* kr.co.cesco.econtract.*.*.controller.*.*(..)) "
     		+ "&& !@annotation(kr.co.cesco.econtract.common.aop.InLogExclusion)")
     public Object controllerLog(ProceedingJoinPoint pjp) throws Throwable {
         log.info("#################################################################################");
-        log.info("@[LogAspect : Start] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+        log.info("@[TraceLog : Start] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
         long startTime = System.currentTimeMillis();
 
         Object[] signatureArgs = pjp.getArgs();
@@ -64,7 +65,7 @@ public class LogAdvice {
         Object result = pjp.proceed();
         long endTime = System.currentTimeMillis();
         log.info("@{} took {} seconds", pjp.getSignature().getName(), TimeUnit.MILLISECONDS.toSeconds(endTime - startTime));
-        log.info("@[LogAspect : End] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+        log.info("@[TraceLog : End] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
         log.info("#################################################################################");
         return result;
     }
@@ -92,13 +93,51 @@ public class LogAdvice {
      * @param jp
      * @param result
      */
-    @AfterReturning(value = "execution(* kr.co.cesco.econtract.*.controller.*.*(..)) " +
+    @AfterReturning(value = "execution(* kr.co.cesco.econtract.*.*.controller.*.*(..)) " +
             "&& @annotation(kr.co.cesco.econtract.common.aop.OutLogInclusion))", returning = "result")
     public void afterReturning(JoinPoint jp, Object result) {
         log.info("@{} returned with value {}", jp, result);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         log.info("@[{}]'s result are\r\n # {} #", jp.getSignature().getName(),
                 !StringUtils.isBlank(gson.toJson(result)) ? gson.toJson(result) : "Empty");
+    }
+    
+    /**
+     * Api Error Log
+     *
+     * @param jp
+     * @param ex
+     */
+    @AfterThrowing(value = "execution(* kr.co.cesco.econtract.*.*.controller.*.*(..))", throwing = "ex")
+    public void error(JoinPoint jp, Exception ex) {
+    	log.error("#################################################################################");
+        log.error("@[ErrorLog : Start] - {}/{}", jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
+        Object[] signatureArgs = jp.getArgs();
+
+        for (Object signatureArg : signatureArgs) {
+            if (StringUtils.isNotBlank(jp.getSignature().getName())) {
+                this.printJsonFormatParamErrorLog(jp, signatureArg);
+            }
+        }
+        log.error("@[ErrorLog : End] - {}/{}", jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
+        log.error("#################################################################################");
+    }
+    
+    
+    /**
+     * print controller, service method params in json format
+     *
+     * @param arg
+     */
+    public void printJsonFormatParamErrorLog(JoinPoint jp, Object arg) {
+        for (String skipArg : SKIP_ARGS) {
+            if (arg.toString().contains(skipArg)) {
+                return;
+            }
+        }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        log.error("\r\n@Request [{}]'s params are\r\n ### {} ###", jp.getSignature().getName(),
+                !StringUtils.isBlank(gson.toJson(arg)) ? gson.toJson(arg) : "Empty");
     }
 
 

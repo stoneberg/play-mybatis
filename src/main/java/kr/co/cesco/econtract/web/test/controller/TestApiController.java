@@ -34,6 +34,12 @@ public class TestApiController {
 	
 	// Select ===================================================================
 	
+    @GetMapping("error/{id}")
+    public List<Employee> getError(@PathVariable("id") String id) {
+    	log.info("getError=======================>{}", id);
+    	return testService.findError();
+    }
+	
     @GetMapping("employees")
     public List<Employee> getEmps() {
     	return testService.findEmps();
