@@ -50,7 +50,7 @@
     
     
     <!-- Get All Customers By State -->
-    <select id="findCustomersByState" parameterType="string" resultType="Customer">
+    <select id="findCustomersByState" resultType="Customer">
         /*SalesMapper.findCustomersByState*/
         SELECT 
             customer_id,
@@ -83,8 +83,7 @@
         )}
     </insert>
 
-    <select id="getPerson" parameterType="integer"
-        statementType="CALLABLE" resultType="kr.co.cesco.econtract.test.dto.Person">
+    <select id="getPerson" statementType="CALLABLE" resultType="kr.co.cesco.econtract.test.dto.Person">
         {call test.getPerson(#{id, mode=IN, jdbcType=INTEGER})}
     </select>
 

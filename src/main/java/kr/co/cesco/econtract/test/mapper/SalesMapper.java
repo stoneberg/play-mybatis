@@ -57,7 +57,8 @@ public interface SalesMapper {
 	@Options(statementType = StatementType.CALLABLE)
 	void addPerson3(PeopleDto.PersonDto person);
 	 
-	Person getPerson(Integer personId);
+	// 조건 파라미터는 mapper(repository)에서만 명시해도 쿼리는 실행됨
+	Person getPerson(@Param("id") Integer id);
 	
 	
 	// Insert ===================================================================
@@ -65,6 +66,7 @@ public interface SalesMapper {
 	@Insert(value = "{CALL production.insertNewBrand(#{brandName, mode=IN, javaType=String})}")
 	@Options(statementType = StatementType.CALLABLE)
 	int insertBrand(CreateDto createDto);
+
 
 
 

@@ -12,7 +12,6 @@ import kr.co.cesco.econtract.test.domain.EmployeeRes;
 public interface EmpMapper {
 	
 	List<Employee> findEmps();
-	
 
 	List<EmployeeRes.ResultDto> findEmployees(EmployeeReq.SearchDto searchDto);
 

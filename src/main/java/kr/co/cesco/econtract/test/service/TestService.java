@@ -1,7 +1,6 @@
 package kr.co.cesco.econtract.test.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +15,13 @@ import kr.co.cesco.econtract.test.domain.CustomerRes;
 import kr.co.cesco.econtract.test.domain.Employee;
 import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
-import kr.co.cesco.econtract.test.domain.Order;
-import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.domain.Product;
 import kr.co.cesco.econtract.test.dto.PeopleDto;
 import kr.co.cesco.econtract.test.dto.Person;
+import kr.co.cesco.econtract.test.dto.ProductDto;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.mapper.EmpMapper;
+import kr.co.cesco.econtract.test.mapper.ProductMapper;
 import kr.co.cesco.econtract.test.mapper.SalesMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +33,7 @@ public class TestService {
 	
 	private final EmpMapper empRepository;
 	private final SalesMapper salesRepository;
+	private final ProductMapper productMapper;
 	private final ObjectMapper objectMapper;
 	
 	// Select =============================================================
@@ -102,23 +103,9 @@ public class TestService {
 	}
 	
 	public Person getPerson(Integer id) {
+		log.info("@getPerson===================>{}", id);
 		return salesRepository.getPerson(id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -126,6 +113,27 @@ public class TestService {
 	
 	public int createBrand(BrandReq.CreateDto createDto) {
 		return salesRepository.insertBrand(createDto);
+	}
+
+	// Collection =============================================================
+	public List<ProductDto> findProducts() {
+		return productMapper.findProducts();
+	}
+
+	public List<ProductDto> findProductsById(Integer productId) {
+		return productMapper.findProductsById(productId);
+	}
+	
+	public List<ProductDto> findProductsById2(Integer productId) {
+		return productMapper.findProductsById2(productId);
+	}
+	
+	public List<Product.ProductDto2> findProductsById3(Integer productId) {
+		return productMapper.findProductsById3(productId);
+	}
+	
+	public List<Product.ProductDto2> findProductsById4(Integer productId) {
+		return productMapper.findProductsById4(productId);
 	}
 
 

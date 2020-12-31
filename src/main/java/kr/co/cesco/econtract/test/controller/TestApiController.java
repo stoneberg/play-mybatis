@@ -15,9 +15,10 @@ import kr.co.cesco.econtract.test.domain.CustomerReq;
 import kr.co.cesco.econtract.test.domain.Employee;
 import kr.co.cesco.econtract.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
-import kr.co.cesco.econtract.test.domain.ProductDto;
+import kr.co.cesco.econtract.test.domain.Product;
 import kr.co.cesco.econtract.test.dto.PeopleDto;
 import kr.co.cesco.econtract.test.dto.Person;
+import kr.co.cesco.econtract.test.dto.ProductDto;
 import kr.co.cesco.econtract.test.dto.StateDto;
 import kr.co.cesco.econtract.test.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -136,7 +137,32 @@ public class TestApiController {
     }
     
     
-   
+	// Association  ===================================================================
+    
+    @GetMapping("collection/products")
+    public List<ProductDto> getProducts() {
+    	return testService.findProducts();
+    }
+    
+    @GetMapping("collection/products/{productId}")
+    public List<ProductDto> getProductsById(final @PathVariable("productId") Integer productId) {
+    	return testService.findProductsById(productId);
+    }
+    
+    @GetMapping("collection/products2/{productId}")
+    public List<ProductDto> getProductsById2(final @PathVariable("productId") Integer productId) {
+    	return testService.findProductsById2(productId);
+    }
+    
+    @GetMapping("collection/products3/{productId}")
+    public List<Product.ProductDto2> getProductsById3(final @PathVariable("productId") Integer productId) {
+    	return testService.findProductsById3(productId);
+    }
+    
+    @GetMapping("collection/products4/{productId}")
+    public List<Product.ProductDto2> getProductsById4(final @PathVariable("productId") Integer productId) {
+    	return testService.findProductsById4(productId);
+    }
     
     
 }
