@@ -1,12 +1,12 @@
-package kr.co.cesco.econtract.test.mapper;
+package kr.co.cesco.econtract.web.test.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import kr.co.cesco.econtract.test.domain.Product;
-import kr.co.cesco.econtract.test.dto.ProductDto;
+import kr.co.cesco.econtract.web.test.domain.Product;
+import kr.co.cesco.econtract.web.test.dto.ProductDto;
 
 @Mapper
 public interface ProductMapper {

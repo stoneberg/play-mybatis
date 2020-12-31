@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.test.controller;
+package kr.co.cesco.econtract.web.test.controller;
 
 import java.util.List;
 
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.cesco.econtract.test.domain.BrandReq;
-import kr.co.cesco.econtract.test.domain.Customer;
-import kr.co.cesco.econtract.test.domain.CustomerReq;
-import kr.co.cesco.econtract.test.domain.Employee;
-import kr.co.cesco.econtract.test.domain.EmployeeReq;
-import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
-import kr.co.cesco.econtract.test.domain.Product;
-import kr.co.cesco.econtract.test.dto.PeopleDto;
-import kr.co.cesco.econtract.test.dto.Person;
-import kr.co.cesco.econtract.test.dto.ProductDto;
-import kr.co.cesco.econtract.test.dto.StateDto;
-import kr.co.cesco.econtract.test.service.TestService;
+import kr.co.cesco.econtract.web.test.domain.BrandReq;
+import kr.co.cesco.econtract.web.test.domain.Customer;
+import kr.co.cesco.econtract.web.test.domain.CustomerReq;
+import kr.co.cesco.econtract.web.test.domain.Employee;
+import kr.co.cesco.econtract.web.test.domain.EmployeeReq;
+import kr.co.cesco.econtract.web.test.domain.EmployeeRes.ResultDto;
+import kr.co.cesco.econtract.web.test.domain.Product;
+import kr.co.cesco.econtract.web.test.dto.PeopleDto;
+import kr.co.cesco.econtract.web.test.dto.Person;
+import kr.co.cesco.econtract.web.test.dto.ProductDto;
+import kr.co.cesco.econtract.web.test.dto.StateDto;
+import kr.co.cesco.econtract.web.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

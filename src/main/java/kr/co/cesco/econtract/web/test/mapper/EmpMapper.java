@@ -1,12 +1,12 @@
-package kr.co.cesco.econtract.test.mapper;
+package kr.co.cesco.econtract.web.test.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import kr.co.cesco.econtract.test.domain.Employee;
-import kr.co.cesco.econtract.test.domain.EmployeeReq;
-import kr.co.cesco.econtract.test.domain.EmployeeRes;
+import kr.co.cesco.econtract.web.test.domain.Employee;
+import kr.co.cesco.econtract.web.test.domain.EmployeeReq;
+import kr.co.cesco.econtract.web.test.domain.EmployeeRes;
 
 @Mapper
 public interface EmpMapper {

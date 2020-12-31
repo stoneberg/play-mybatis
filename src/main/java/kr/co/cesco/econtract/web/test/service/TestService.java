@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.test.service;
+package kr.co.cesco.econtract.web.test.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,21 +8,21 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.co.cesco.econtract.test.domain.BrandReq;
-import kr.co.cesco.econtract.test.domain.Customer;
-import kr.co.cesco.econtract.test.domain.CustomerReq;
-import kr.co.cesco.econtract.test.domain.CustomerRes;
-import kr.co.cesco.econtract.test.domain.Employee;
-import kr.co.cesco.econtract.test.domain.EmployeeReq;
-import kr.co.cesco.econtract.test.domain.EmployeeRes.ResultDto;
-import kr.co.cesco.econtract.test.domain.Product;
-import kr.co.cesco.econtract.test.dto.PeopleDto;
-import kr.co.cesco.econtract.test.dto.Person;
-import kr.co.cesco.econtract.test.dto.ProductDto;
-import kr.co.cesco.econtract.test.dto.StateDto;
-import kr.co.cesco.econtract.test.mapper.EmpMapper;
-import kr.co.cesco.econtract.test.mapper.ProductMapper;
-import kr.co.cesco.econtract.test.mapper.SalesMapper;
+import kr.co.cesco.econtract.web.test.domain.BrandReq;
+import kr.co.cesco.econtract.web.test.domain.Customer;
+import kr.co.cesco.econtract.web.test.domain.CustomerReq;
+import kr.co.cesco.econtract.web.test.domain.CustomerRes;
+import kr.co.cesco.econtract.web.test.domain.Employee;
+import kr.co.cesco.econtract.web.test.domain.EmployeeReq;
+import kr.co.cesco.econtract.web.test.domain.EmployeeRes.ResultDto;
+import kr.co.cesco.econtract.web.test.domain.Product;
+import kr.co.cesco.econtract.web.test.dto.PeopleDto;
+import kr.co.cesco.econtract.web.test.dto.Person;
+import kr.co.cesco.econtract.web.test.dto.ProductDto;
+import kr.co.cesco.econtract.web.test.dto.StateDto;
+import kr.co.cesco.econtract.web.test.mapper.EmpMapper;
+import kr.co.cesco.econtract.web.test.mapper.ProductMapper;
+import kr.co.cesco.econtract.web.test.mapper.SalesMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

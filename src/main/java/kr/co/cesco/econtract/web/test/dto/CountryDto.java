@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.test.dto;
+package kr.co.cesco.econtract.web.test.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

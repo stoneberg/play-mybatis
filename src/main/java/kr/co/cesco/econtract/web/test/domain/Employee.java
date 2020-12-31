@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.test.domain;
+package kr.co.cesco.econtract.web.test.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

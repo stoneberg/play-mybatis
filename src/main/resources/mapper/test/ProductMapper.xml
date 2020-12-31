@@ -7,7 +7,7 @@
     @Description : product queries
     @Author : stone
 -->
-<mapper namespace="kr.co.cesco.econtract.test.mapper.ProductMapper"> 
+<mapper namespace="kr.co.cesco.econtract.web.test.mapper.ProductMapper"> 
 
     <!-- category -->
 	<resultMap type="CategoryDto" id="categoryResultMap">

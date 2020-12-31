@@ -7,7 +7,7 @@
     @Description : sales queries
     @Author : stoneberg
 -->
-<mapper namespace="kr.co.cesco.econtract.test.mapper.SalesMapper"> 
+<mapper namespace="kr.co.cesco.econtract.web.test.mapper.SalesMapper"> 
     
     <!-- Get All Customers -->
     <select id="findCustomers" resultType="Customer">
@@ -67,7 +67,7 @@
     </select>
     
     <!--  out param procedure : return value is in parameterType -->
-    <insert id="addPerson" parameterType="kr.co.cesco.econtract.test.dto.Person" statementType="CALLABLE">
+    <insert id="addPerson" parameterType="kr.co.cesco.econtract.web.test.dto.Person" statementType="CALLABLE">
         {call test.addPerson(
 	        #{name, mode=IN, jdbcType=VARCHAR},
 	        #{age, mode=IN, jdbcType=INTEGER},
@@ -83,7 +83,7 @@
         )}
     </insert>
 
-    <select id="getPerson" statementType="CALLABLE" resultType="kr.co.cesco.econtract.test.dto.Person">
+    <select id="getPerson" statementType="CALLABLE" resultType="kr.co.cesco.econtract.web.test.dto.Person">
         {call test.getPerson(#{id, mode=IN, jdbcType=INTEGER})}
     </select>
 

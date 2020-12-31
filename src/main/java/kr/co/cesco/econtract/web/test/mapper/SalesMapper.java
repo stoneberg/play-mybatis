@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.test.mapper;
+package kr.co.cesco.econtract.web.test.mapper;
 
 import java.util.List;
 import java.util.Map;
@@ -10,13 +10,13 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.mapping.StatementType;
 
-import kr.co.cesco.econtract.test.domain.BrandReq.CreateDto;
-import kr.co.cesco.econtract.test.domain.Customer;
-import kr.co.cesco.econtract.test.domain.CustomerReq;
-import kr.co.cesco.econtract.test.domain.CustomerRes;
-import kr.co.cesco.econtract.test.dto.PeopleDto;
-import kr.co.cesco.econtract.test.dto.Person;
-import kr.co.cesco.econtract.test.dto.StateDto;
+import kr.co.cesco.econtract.web.test.domain.BrandReq.CreateDto;
+import kr.co.cesco.econtract.web.test.domain.Customer;
+import kr.co.cesco.econtract.web.test.domain.CustomerReq;
+import kr.co.cesco.econtract.web.test.domain.CustomerRes;
+import kr.co.cesco.econtract.web.test.dto.PeopleDto;
+import kr.co.cesco.econtract.web.test.dto.Person;
+import kr.co.cesco.econtract.web.test.dto.StateDto;
 
 @Mapper
 public interface SalesMapper {

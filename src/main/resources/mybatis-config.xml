@@ -24,21 +24,21 @@
 
 
 	<typeAliases>
-		<typeAlias alias="Employee" type="kr.co.cesco.econtract.test.domain.Employee" />
-		<typeAlias alias="SearchDto" type="kr.co.cesco.econtract.test.domain.EmployeeReq$SearchDto" />
-		<typeAlias alias="ResultDto" type="kr.co.cesco.econtract.test.domain.EmployeeRes$ResultDto" />
-		<typeAlias alias="Customer" type="kr.co.cesco.econtract.test.domain.Customer" />
-		<typeAlias alias="PersonDto" type="kr.co.cesco.econtract.test.dto.PeopleDto$PersonDto" />
+		<typeAlias alias="Employee" type="kr.co.cesco.econtract.web.test.domain.Employee" />
+		<typeAlias alias="SearchDto" type="kr.co.cesco.econtract.web.test.domain.EmployeeReq$SearchDto" />
+		<typeAlias alias="ResultDto" type="kr.co.cesco.econtract.web.test.domain.EmployeeRes$ResultDto" />
+		<typeAlias alias="Customer" type="kr.co.cesco.econtract.web.test.domain.Customer" />
+		<typeAlias alias="PersonDto" type="kr.co.cesco.econtract.web.test.dto.PeopleDto$PersonDto" />
 		<!-- Association & Collection -->
-		<typeAlias alias="ProductDto" type="kr.co.cesco.econtract.test.dto.ProductDto" />
-		<typeAlias alias="CategoryDto" type="kr.co.cesco.econtract.test.dto.CategoryDto" />
-		<typeAlias alias="BrandDto" type="kr.co.cesco.econtract.test.dto.BrandDto" />
-		<typeAlias alias="OrderItemDto" type="kr.co.cesco.econtract.test.dto.OrderItemDto" />
+		<typeAlias alias="ProductDto" type="kr.co.cesco.econtract.web.test.dto.ProductDto" />
+		<typeAlias alias="CategoryDto" type="kr.co.cesco.econtract.web.test.dto.CategoryDto" />
+		<typeAlias alias="BrandDto" type="kr.co.cesco.econtract.web.test.dto.BrandDto" />
+		<typeAlias alias="OrderItemDto" type="kr.co.cesco.econtract.web.test.dto.OrderItemDto" />
 		<!-- Inner Class -->
-		<typeAlias alias="CategoryDto2" type="kr.co.cesco.econtract.test.domain.Product$CategoryDto2" />
-		<typeAlias alias="BrandDto2" type="kr.co.cesco.econtract.test.domain.Product$BrandDto2" />
-		<typeAlias alias="ProductDto2" type="kr.co.cesco.econtract.test.domain.Product$ProductDto2" />
-		<typeAlias alias="OrderItemDto2" type="kr.co.cesco.econtract.test.domain.Product$OrderItemDto2" />
+		<typeAlias alias="CategoryDto2" type="kr.co.cesco.econtract.web.test.domain.Product$CategoryDto2" />
+		<typeAlias alias="BrandDto2" type="kr.co.cesco.econtract.web.test.domain.Product$BrandDto2" />
+		<typeAlias alias="ProductDto2" type="kr.co.cesco.econtract.web.test.domain.Product$ProductDto2" />
+		<typeAlias alias="OrderItemDto2" type="kr.co.cesco.econtract.web.test.domain.Product$OrderItemDto2" />
 	</typeAliases>
 
 </configuration>

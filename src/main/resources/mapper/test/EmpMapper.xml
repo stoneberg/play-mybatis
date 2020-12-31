@@ -7,7 +7,7 @@
     @Description : emplyee queries
     @Author : stoneberg
 -->
-<mapper namespace="kr.co.cesco.econtract.test.mapper.EmpMapper"> 
+<mapper namespace="kr.co.cesco.econtract.web.test.mapper.EmpMapper"> 
     
     <!-- Get All Employees -->
     <select id="findEmps" resultType="Employee">
