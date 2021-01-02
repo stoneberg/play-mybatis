@@ -24,4 +24,13 @@ public class UserVirtualCoinDto {
         private Integer amount;
     }
 
+    @Data
+    public static class InvestorRes {
+        private String username;
+        private String firstname;
+        private String lastname;
+        private String email;
+        private UserVirtualCoinRes userVirtualCoin;
+    }
+
 }

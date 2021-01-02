@@ -52,3 +52,24 @@ CREATE TABLE sales.user_virtual_coins
 INSERT INTO sales.user_virtual_coins
     (username, virtual_coin, amount)
 VALUES ('stoneberg', 'BTC', 100);
+
+
+CREATE TABLE sales.investors
+(
+    username varchar(50) NOT NULL,
+    firstname varchar(25) NOT NULL,
+    lastname varchar(25) NOT NULL,
+    email varchar(50),
+    CONSTRAINT investors_username_pk PRIMARY KEY (username)
+);
+
+
+INSERT INTO sales.investors
+(username, firstname, lastname, email)
+VALUES
+('stoneberg', 'lee', 'yu pyeong', 'stoneberg@gmail.net');
+
+INSERT INTO sales.investors
+(username, firstname, lastname, email)
+VALUES
+('zetlee', 'lee', 'ho jae', 'zetlee@gmail.net');

@@ -3,6 +3,7 @@ package kr.co.cesco.econtract.web.test.controller;
 import java.util.List;
 
 import kr.co.cesco.econtract.web.test.dto.*;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorRes;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinRes;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -179,6 +180,11 @@ public class TestApiController {
     @PostMapping("enums/user-virtual-coins")
     public void addUserVirtualCoin(@RequestBody UserVirtualCoinReq userVirtualCoinReq) {
         testService.insertUserVirtualCoin(userVirtualCoinReq);
+    }
+
+    @GetMapping("enums/investors")
+    public List<InvestorRes> getInvestors() {
+        return testService.findInvestors();
     }
 
     
