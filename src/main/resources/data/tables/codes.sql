@@ -8,7 +8,6 @@ CREATE TABLE sales.codes
     CONSTRAINT codes_code_group_fk FOREIGN KEY (code_group) REFERENCES sales.codes (code)
 );
 
-
 INSERT INTO sales.codes
     (code, code_nm, code_desc)
 VALUES ('VC', 'VIRTUAL_COIN', '가상화폐');
@@ -60,16 +59,21 @@ CREATE TABLE sales.investors
     firstname varchar(25) NOT NULL,
     lastname varchar(25) NOT NULL,
     email varchar(50),
+    use_yn varchar(1) NOT NULL DEFAULT 'Y',
     CONSTRAINT investors_username_pk PRIMARY KEY (username)
 );
 
+INSERT INTO sales.investors
+(username, firstname, lastname, email, use_yn)
+VALUES
+('stoneberg', 'lee', 'yu pyeong', 'stoneberg@gmail.net', 'Y');
 
 INSERT INTO sales.investors
-(username, firstname, lastname, email)
+(username, firstname, lastname, email, use_yn)
 VALUES
-('stoneberg', 'lee', 'yu pyeong', 'stoneberg@gmail.net');
+('zetlee', 'lee', 'ho jae', 'zetlee@gmail.net', 'Y');
 
 INSERT INTO sales.investors
-(username, firstname, lastname, email)
+(username, firstname, lastname, email, use_yn)
 VALUES
-('zetlee', 'lee', 'ho jae', 'zetlee@gmail.net');
+('redfoxer', 'lee', 'sang', 'redfoxer@gmail.net', 'N');

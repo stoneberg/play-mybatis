@@ -1,14 +1,17 @@
 package kr.co.cesco.econtract.common.exception;
 
-public class BadRequestException extends Exception {
+import kr.co.cesco.econtract.common.exception.type.BaseExceptionType;
+import lombok.Getter;
 
+public class BadRequestException extends RuntimeException {
 	private static final long serialVersionUID = -1673087263700143836L;
 
-	public BadRequestException() {
-	}
+	@Getter
+	private final BaseExceptionType exceptionType;
 
-	public BadRequestException(String message) {
-		super(message);
+	public BadRequestException(BaseExceptionType exceptionType){
+		super(exceptionType.getMessage());
+		this.exceptionType = exceptionType;
 	}
 
 }

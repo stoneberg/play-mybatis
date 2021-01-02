@@ -1,4 +1,4 @@
-package kr.co.cesco.econtract.common.exception;
+package kr.co.cesco.econtract.common.exception.reponse;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

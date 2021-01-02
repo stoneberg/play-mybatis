@@ -32,14 +32,21 @@ import lombok.extern.slf4j.Slf4j;
 public class TestApiController {
 	
 	private final TestService testService;
-	
-	// Select ===================================================================
-	
+
+	// Error Test ==============================================================
     @GetMapping("error/{id}")
     public List<Employee> getError(@PathVariable("id") String id) {
-    	log.info("getError=======================>{}", id);
-    	return testService.findError();
+        log.info("getError=======================>{}", id);
+        return testService.causeTestError();
     }
+
+    @GetMapping("error2/{id}")
+    public List<Employee> getError2(@PathVariable("id") Integer id) {
+        log.info("getError2=======================>{}", id);
+        return testService.causeTestError2();
+    }
+
+	// Select ===================================================================
 	
     @GetMapping("employees")
     public List<Employee> getEmps() {

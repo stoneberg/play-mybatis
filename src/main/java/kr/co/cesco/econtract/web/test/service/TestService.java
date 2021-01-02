@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.cesco.econtract.common.exception.TestAppException;
+import kr.co.cesco.econtract.common.exception.type.TestAppExceptionType;
 import kr.co.cesco.econtract.web.test.dto.*;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorRes;
@@ -41,10 +43,18 @@ public class TestService {
 	
 	// Error =============================================================
 	
-	public List<Employee> findError() {
+	public List<Employee> causeTestError() {
 		if (true) {
-			log.error("@findError=====================>");
-			throw new RuntimeException("My Custom Error has ocurred!");
+			log.error("@causeTestError=====================>");
+			throw new TestAppException(TestAppExceptionType.CAUSE_TEST_ERROR);
+		}
+		return empRepository.findEmps();
+	}
+
+	public List<Employee> causeTestError2() {
+		if (true) {
+			log.error("@causeTestError2=====================>");
+			throw new TestAppException(TestAppExceptionType.CAUSE_TEST2_ERROR);
 		}
 		return empRepository.findEmps();
 	}
