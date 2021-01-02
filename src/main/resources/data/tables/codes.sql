@@ -9,23 +9,23 @@ CREATE TABLE sales.codes
 );
 
 
-INSERT INTO storedb.sales.codes
+INSERT INTO sales.codes
     (code, code_nm, code_desc)
 VALUES ('VC', 'VIRTUAL_COIN', '가상화폐');
 
-INSERT INTO storedb.sales.codes
+INSERT INTO sales.codes
     (code, code_nm, code_desc, code_group)
 VALUES ('BTC', 'BIT_COIN', '비트코인', 'VC');
 
-INSERT INTO storedb.sales.codes
+INSERT INTO sales.codes
     (code, code_nm, code_desc, code_group)
 VALUES ('ETH', 'ETHEREUM', '이더리움', 'VC');
 
-INSERT INTO storedb.sales.codes
+INSERT INTO sales.codes
     (code, code_nm, code_desc, code_group)
 VALUES ('LTC', 'LITE_COIN', '라이트코인', 'VC');
 
-INSERT INTO storedb.sales.codes
+INSERT INTO sales.codes
     (code, code_nm, code_desc, code_group)
 VALUES ('XRP', 'RIPPLE', '리플', 'VC');
 
