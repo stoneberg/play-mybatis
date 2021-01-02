@@ -25,11 +25,22 @@ public class UserVirtualCoinDto {
     }
 
     @Data
+    public static class InvestorReq implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private String username;
+        private String firstname;
+        private String lastname;
+        private String email;
+        private Boolean useYn; // Boolean typehandler는 Boolean !boolean
+    }
+
+    @Data
     public static class InvestorRes {
         private String username;
         private String firstname;
         private String lastname;
         private String email;
+        private Boolean useYn;
         private UserVirtualCoinRes userVirtualCoin;
     }
 

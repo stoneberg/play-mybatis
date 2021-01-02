@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.cesco.econtract.web.test.dto.*;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorRes;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinRes;
@@ -158,5 +159,9 @@ public class TestService {
 
 	public List<InvestorRes> findInvestors() {
 		return enumsMapper.findInvestors();
+	}
+
+	public int insertInvestor(InvestorReq investorReq) {
+		return enumsMapper.insertInvestor(investorReq);
 	}
 }

@@ -47,6 +47,8 @@
 	<typeHandlers>
 		<typeHandler javaType="kr.co.cesco.econtract.common.mybatis.typehandler.CodeEnum"
 					 handler="kr.co.cesco.econtract.common.mybatis.typehandler.CodeEnumTypeHandler" />
+		<typeHandler javaType="BOOLEAN"
+					 handler="kr.co.cesco.econtract.common.mybatis.typehandler.YesNoBooleanTypeHandler" />
 	</typeHandlers>
 
 </configuration>

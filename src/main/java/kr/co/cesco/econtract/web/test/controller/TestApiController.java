@@ -3,6 +3,7 @@ package kr.co.cesco.econtract.web.test.controller;
 import java.util.List;
 
 import kr.co.cesco.econtract.web.test.dto.*;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.InvestorRes;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinReq;
 import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinRes;
@@ -178,8 +179,8 @@ public class TestApiController {
     }
 
     @PostMapping("enums/user-virtual-coins")
-    public void addUserVirtualCoin(@RequestBody UserVirtualCoinReq userVirtualCoinReq) {
-        testService.insertUserVirtualCoin(userVirtualCoinReq);
+    public int addUserVirtualCoin(@RequestBody UserVirtualCoinReq userVirtualCoinReq) {
+        return testService.insertUserVirtualCoin(userVirtualCoinReq);
     }
 
     @GetMapping("enums/investors")
@@ -187,5 +188,9 @@ public class TestApiController {
         return testService.findInvestors();
     }
 
+    @PostMapping("enums/investors")
+    public int addInvestor(@RequestBody InvestorReq investorReq) {
+        return testService.insertInvestor(investorReq);
+    }
     
 }

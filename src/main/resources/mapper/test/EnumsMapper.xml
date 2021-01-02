@@ -44,6 +44,7 @@
         <result column="firstname" property="firstname"/>
         <result column="lastname" property="lastname"/>
         <result column="email" property="email"/>
+        <result column="use_yn" property="useYn"/>
         <association property="userVirtualCoin" resultMap="userVirtualCoinResultMap"/>
     </resultMap>
 
@@ -54,11 +55,21 @@
             i.firstname,
             i.lastname,
             i.email,
+            i.use_yn,
             c.id,
             c.virtual_coin,
             c.amount
         FROM sales.investors i INNER JOIN sales.user_virtual_coins c
         ON i.username = c.username
     </select>
+
+    <!-- Add Investor -->
+    <insert id="insertInvestor">
+        /*EnumsMapper.insertInvestor*/
+        INSERT INTO sales.investors
+            (username, firstname, lastname, email, use_yn)
+        VALUES
+            (#{username}, #{firstname}, #{lastname}, #{email}, #{useYn})
+    </insert>
 
 </mapper>
