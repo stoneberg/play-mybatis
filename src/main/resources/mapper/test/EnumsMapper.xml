@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    @SQL File Name : EnumsMapper.xml
+    @Description : virtual coins queries
+    @Author : stoneberg
+-->
+<mapper namespace="kr.co.cesco.econtract.web.test.mapper.EnumsMapper">
+    
+    <!-- Get All User Virtual Coins -->
+    <select id="findUserVirtualCoins" resultType="UserVirtualCoinRes">
+        /*EnumsMapper.findUserVirtualCoins*/
+		SELECT 
+		    id,
+		    username,
+            virtual_coin,
+            amount
+		FROM sales.user_virtual_coins
+    </select>
+
+    <!-- Add User Virtual Coins -->
+    <insert id="insertUserVirtualCoin">
+        /*EnumsMapper.insertUserVirtualCoin*/
+        INSERT INTO sales.user_virtual_coins
+            (username, virtual_coin, amount)
+        VALUES
+            (#{username}, #{virtualCoin}, #{amount})
+    </insert>
+
+</mapper>

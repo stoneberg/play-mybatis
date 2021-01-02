@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.cesco.econtract.web.test.dto.*;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinReq;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinRes;
+import kr.co.cesco.econtract.web.test.mapper.EnumsMapper;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,10 +20,6 @@ import kr.co.cesco.econtract.web.test.domain.Employee;
 import kr.co.cesco.econtract.web.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.web.test.domain.EmployeeRes.ResultDto;
 import kr.co.cesco.econtract.web.test.domain.Product;
-import kr.co.cesco.econtract.web.test.dto.PeopleDto;
-import kr.co.cesco.econtract.web.test.dto.Person;
-import kr.co.cesco.econtract.web.test.dto.ProductDto;
-import kr.co.cesco.econtract.web.test.dto.StateDto;
 import kr.co.cesco.econtract.web.test.mapper.EmpMapper;
 import kr.co.cesco.econtract.web.test.mapper.ProductMapper;
 import kr.co.cesco.econtract.web.test.mapper.SalesMapper;
@@ -34,6 +34,7 @@ public class TestService {
 	private final EmpMapper empRepository;
 	private final SalesMapper salesRepository;
 	private final ProductMapper productMapper;
+	private final EnumsMapper enumsMapper;
 	private final ObjectMapper objectMapper;
 	
 	// Error =============================================================
@@ -116,9 +117,7 @@ public class TestService {
 		log.info("@getPerson===================>{}", id);
 		return salesRepository.getPerson(id);
 	}
-	
-	
-	
+
 	// Insert =============================================================
 	
 	public int createBrand(BrandReq.CreateDto createDto) {
@@ -147,11 +146,12 @@ public class TestService {
 	}
 
 
+	// Enum Typehandler =============================================================
+	public List<UserVirtualCoinRes> findUserVirtualCoins() {
+		return enumsMapper.findUserVirtualCoins();
+	}
 
-
-
-	
-	
-	
-
+	public int insertUserVirtualCoin(UserVirtualCoinReq userVirtualCoinReq) {
+		return enumsMapper.insertUserVirtualCoin(userVirtualCoinReq);
+	}
 }

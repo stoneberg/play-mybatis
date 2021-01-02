@@ -2,6 +2,9 @@ package kr.co.cesco.econtract.web.test.controller;
 
 import java.util.List;
 
+import kr.co.cesco.econtract.web.test.dto.*;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinReq;
+import kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto.UserVirtualCoinRes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +19,6 @@ import kr.co.cesco.econtract.web.test.domain.Employee;
 import kr.co.cesco.econtract.web.test.domain.EmployeeReq;
 import kr.co.cesco.econtract.web.test.domain.EmployeeRes.ResultDto;
 import kr.co.cesco.econtract.web.test.domain.Product;
-import kr.co.cesco.econtract.web.test.dto.PeopleDto;
-import kr.co.cesco.econtract.web.test.dto.Person;
-import kr.co.cesco.econtract.web.test.dto.ProductDto;
-import kr.co.cesco.econtract.web.test.dto.StateDto;
 import kr.co.cesco.econtract.web.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -169,6 +168,18 @@ public class TestApiController {
     public List<Product.ProductDto2> getProductsById4(final @PathVariable("productId") Integer productId) {
     	return testService.findProductsById4(productId);
     }
-    
+
+
+    // Enum Typehandler  ===================================================================
+    @GetMapping("enums/user-virtual-coins")
+    public List<UserVirtualCoinRes> getUserVirtualCoins() {
+        return testService.findUserVirtualCoins();
+    }
+
+    @PostMapping("enums/user-virtual-coins")
+    public void addUserVirtualCoin(@RequestBody UserVirtualCoinReq userVirtualCoinReq) {
+        testService.insertUserVirtualCoin(userVirtualCoinReq);
+    }
+
     
 }

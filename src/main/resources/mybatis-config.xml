@@ -22,7 +22,6 @@
 
 	</settings>
 
-
 	<typeAliases>
 		<typeAlias alias="Employee" type="kr.co.cesco.econtract.web.test.domain.Employee" />
 		<typeAlias alias="SearchDto" type="kr.co.cesco.econtract.web.test.domain.EmployeeReq$SearchDto" />
@@ -39,6 +38,14 @@
 		<typeAlias alias="BrandDto2" type="kr.co.cesco.econtract.web.test.domain.Product$BrandDto2" />
 		<typeAlias alias="ProductDto2" type="kr.co.cesco.econtract.web.test.domain.Product$ProductDto2" />
 		<typeAlias alias="OrderItemDto2" type="kr.co.cesco.econtract.web.test.domain.Product$OrderItemDto2" />
+		<!-- Enum Class -->
+		<typeAlias alias="UserVirtualCoinReq" type="kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto$UserVirtualCoinReq" />
+		<typeAlias alias="UserVirtualCoinRes" type="kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto$UserVirtualCoinRes" />
 	</typeAliases>
+
+	<typeHandlers>
+		<typeHandler javaType="kr.co.cesco.econtract.common.mybatis.typehandler.CodeEnum"
+					 handler="kr.co.cesco.econtract.common.mybatis.typehandler.CodeEnumTypeHandler" />
+	</typeHandlers>
 
 </configuration>

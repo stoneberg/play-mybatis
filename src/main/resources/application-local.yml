@@ -3,8 +3,8 @@ spring:
     location: classpath:banner/banner-local.txt
 
   datasource:
-    url: jdbc:log4jdbc:sqlserver://localhost:1433;DatabaseName=cesco
+    url: jdbc:log4jdbc:sqlserver://localhost:1433;DatabaseName=storedb
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     #driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: stoneberg
+    username: devops
     password: new1234@

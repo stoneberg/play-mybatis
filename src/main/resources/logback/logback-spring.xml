@@ -38,7 +38,7 @@
      <!-- Error File Appender -->
     <appender name="ERROR_FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
          <filter class="ch.qos.logback.classic.filter.LevelFilter"> 
-            <level>ERROR</level> 
+            <level>ERROR</level>
             <onMatch>ACCEPT</onMatch> 
             <onMismatch>DENY</onMismatch> 
         </filter>   
