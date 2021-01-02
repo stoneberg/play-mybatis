@@ -54,6 +54,7 @@
             i.firstname,
             i.lastname,
             i.email,
+            c.id,
             c.virtual_coin,
             c.amount
         FROM sales.investors i INNER JOIN sales.user_virtual_coins c
