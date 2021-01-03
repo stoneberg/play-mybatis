@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap Simple Login Form with Blue Background</title>
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/vendor/bootstrap.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/login.css}" />
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        let thisPage = {};
+        thisPage['ctxPath'] = /*[[@{/}]]*/ '/';
+        /*]]>*/
+    </script>
+</head>
+<body>
+<div class="login-form">
+    <form th:action="@{/login}" method="post">
+        <h2 class="text-center">Login</h2>
+        <div th:if="${param.error}" class="form-group has-error">
+            <div class="alert alert-danger">Invalid username or password.</div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">You have been logged out.</div>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/vendor/jquery-3.5.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/vendor/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/vendor/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/views/web/login/login.js}"></script>
+</html>
