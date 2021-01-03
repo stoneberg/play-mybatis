@@ -10,18 +10,45 @@ const module = (function (global, thisPage) {
     /***************************************************************************
      * @ 모듈 함수 선언
      **************************************************************************/
-    // function define_user_function_here() {
-    //
-    // }
+    function validateLoginForm() {
+        const username = $('input[name=username]').val();
+        const password = $('input[name=password]').val();
+
+        if (!username.trim()) {
+            $.alert('사용자 아이디를 입력하세요.');
+            return false;
+        } else if (!password.trim()) {
+            $.alert('사용자 비밀번호를 입력하세요.');
+            return false;
+        }
+
+        return true;
+    }
 
     /***************************************************************************
      * @ jquery 이벤트 등록
      **************************************************************************/
     function moduleEventHandlers() {
 
+        // login submit
+        $('#signIn').on('click', function(e) {
+            e.preventDefault();
+            if (!validateLoginForm()) {
+                return;
+            }
 
+            $('#loginForm').submit();
 
+        });
 
+        // enter key login trigger
+        $('input[name=password]').on('keypress', function (e) {
+            if (e.which === 13 || e.keyCode === 13) {
+                $('#signIn').trigger('click');
+                return false;
+            }
+            return true;
+        });
 
     } // end of events
 
@@ -29,7 +56,6 @@ const module = (function (global, thisPage) {
      * @ 화면 로딩 시 최초로 실행할 함수 선언
      **************************************************************************/
     function moduleInitializr() {
-        // 정의된_사용자_함수_중_화면_최초_로딩시_호출된_함수();
 
     }
 
