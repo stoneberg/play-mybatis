@@ -13,8 +13,8 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    public Optional<User> findUserById(String username) {
-        return Optional.ofNullable(userMapper.findUserById(username));
+    public Optional<User> findUserByUsername(String username) {
+        return Optional.ofNullable(userMapper.findUserByUsername(username));
     }
 
 }

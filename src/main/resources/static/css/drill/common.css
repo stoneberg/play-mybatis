@@ -1,37 +1,4 @@
 @charset "utf-8";
-
-@font-face {
-  font-family: 'NanumGothic';
-  font-display: block;
-  src:url('../../font/drill/NanumGothicLight.woff') format('woff'),
-      url('../../font/drill/NanumGothicLight.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'NanumGothic';
-  font-display: block;
-  src:	url('../../font/drill/NanumGothic.woff') format('woff'),
-  		url('../../font/drill/NanumGothic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'NanumGothic';
-  font-display: block;
-  src:	url('../../font/drill/NanumGothicBold.woff') format('woff'),
-  		url('../../font/drill/NanumGothicBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'NanumGothic';
-  font-display: block;
-  src:	url('../../font/drill/NanumGothicExtraBold.woff') format('woff'),
-  		url('../../font/drill/NanumGothicExtraBold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
 /*
 	reset css
 */

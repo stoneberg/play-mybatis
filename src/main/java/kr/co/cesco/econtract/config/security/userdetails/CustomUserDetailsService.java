@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) {
-		User user = userService.findUserById(username)
+		User user = userService.findUserByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found with userId: " + username));
 		return CustomUserDetails.build(user);
 	}

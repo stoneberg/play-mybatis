@@ -55,14 +55,8 @@ public class CustomUserDetails implements UserDetails {
 
         if (StringUtils.equals(user.getUserType(), UserType.SA.name())) {
             authorities.add(new SimpleGrantedAuthority(RoleType.ROLE_ADMIN.name()));
-        } else {
-            authorities.add(new SimpleGrantedAuthority(RoleType.ROLE_USER.name()));
         }
-
-        // 권한 없는 사용자는 모두 일반 사용자 권한(ROLE_USER) 부여
-        if (authorities.isEmpty()) {
-            authorities.add(new SimpleGrantedAuthority(RoleType.ROLE_USER.name()));
-        }
+        authorities.add(new SimpleGrantedAuthority(RoleType.ROLE_USER.name()));
 
         return new CustomUserDetails(
                 user.getUsername(),

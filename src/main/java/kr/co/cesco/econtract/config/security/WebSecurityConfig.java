@@ -57,12 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                 .antMatchers("/error/**", "/files/**").permitAll() // allow pdf download image attachment to template
-                .antMatchers("/admin/api/**").hasRole("ADMIN")
-                .antMatchers("/**")
-                .hasAnyRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
+                .defaultSuccessUrl("/main") //configure screen after login success
                 .loginPage("/login")
                 .permitAll()
             .and()

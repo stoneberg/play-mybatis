@@ -2,7 +2,10 @@ package kr.co.cesco.econtract.common.aop;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import kr.co.cesco.econtract.config.security.userdetails.CustomUserDetails;
+import kr.co.cesco.econtract.web.users.model.User;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -11,6 +14,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -53,8 +59,9 @@ public class LogAdvice {
     @Around("execution(* kr.co.cesco.econtract.*.*.controller.*.*(..)) "
     		+ "&& !@annotation(kr.co.cesco.econtract.common.aop.InLogExclusion)")
     public Object controllerLog(ProceedingJoinPoint pjp) throws Throwable {
+        String currentUser = this.currentUser();
         log.info("#################################################################################");
-        log.info("@[TraceLog : Start] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+        log.info("@[TraceLog : Start] - {}/{}/{}", currentUser, pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
         long startTime = System.currentTimeMillis();
 
         Object[] signatureArgs = pjp.getArgs();
@@ -65,7 +72,7 @@ public class LogAdvice {
         Object result = pjp.proceed();
         long endTime = System.currentTimeMillis();
         log.info("@{} took {} seconds", pjp.getSignature().getName(), TimeUnit.MILLISECONDS.toSeconds(endTime - startTime));
-        log.info("@[TraceLog : End] - {}/{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
+        log.info("@[TraceLog : End] - {}/{}/{}", currentUser, pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
         log.info("#################################################################################");
         return result;
     }
@@ -110,8 +117,9 @@ public class LogAdvice {
      */
     @AfterThrowing(value = "execution(* kr.co.cesco.econtract.*.*.controller.*.*(..))", throwing = "ex")
     public void error(JoinPoint jp, Exception ex) {
+        String currentUser = this.currentUser();
     	log.error("#################################################################################");
-        log.error("@[ErrorLog : Start] - {}/{}", jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
+        log.error("@[ErrorLog : Start] - {}/{}/{}", currentUser, jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
         Object[] signatureArgs = jp.getArgs();
 
         for (Object signatureArg : signatureArgs) {
@@ -119,7 +127,9 @@ public class LogAdvice {
                 this.printJsonFormatParamErrorLog(jp, signatureArg);
             }
         }
-        log.error("@[ErrorLog : End] - {}/{}", jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
+
+        log.error("▒▒▒▒▒▒▒▒ EXCEPTION ▒▒▒▒▒▒▒▒ {}", ExceptionUtils.getMessage(ex));
+        log.error("@[ErrorLog : End] - {}/{}/{}", currentUser, jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
         log.error("#################################################################################");
     }
     
@@ -140,5 +150,19 @@ public class LogAdvice {
                 !StringUtils.isBlank(gson.toJson(arg)) ? gson.toJson(arg) : "Empty");
     }
 
+    private String currentUser() {
+        String username = "";
+        String fullname = "";
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            CustomUserDetails user = (CustomUserDetails)authentication.getPrincipal();
+            username = user.getUsername();
+            fullname = user.getFullname();
+        }
+
+        return username + "/" + fullname;
+    }
 
 }

@@ -42,6 +42,8 @@
 		<typeAlias alias="UserVirtualCoinReq" type="kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto$UserVirtualCoinReq" />
 		<typeAlias alias="UserVirtualCoinRes" type="kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto$UserVirtualCoinRes" />
 		<typeAlias alias="InvestorRes" type="kr.co.cesco.econtract.web.test.dto.UserVirtualCoinDto$InvestorRes" />
+		<!-- User -->
+		<typeAlias alias="User" type="kr.co.cesco.econtract.web.users.model.User" />
 	</typeAliases>
 
 	<typeHandlers>

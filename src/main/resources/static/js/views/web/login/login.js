@@ -31,24 +31,22 @@ const module = (function (global, thisPage) {
     function moduleEventHandlers() {
 
         // login submit
-        $('#signIn').on('click', function(e) {
-            e.preventDefault();
-            if (!validateLoginForm()) {
-                return;
-            }
-
-            $('#loginForm').submit();
-
-        });
+        // $('#login').on('submit', function(e) {
+        //     console.log("=============================")
+        //     e.preventDefault();
+        //     if (!validateLoginForm()) {
+        //         return false;
+        //     }
+        // });
 
         // enter key login trigger
-        $('input[name=password]').on('keypress', function (e) {
-            if (e.which === 13 || e.keyCode === 13) {
-                $('#signIn').trigger('click');
-                return false;
-            }
-            return true;
-        });
+        // $('input[name=password]').on('keypress', function (e) {
+        //     if (e.which === 13 || e.keyCode === 13) {
+        //         $('#login').trigger('click');
+        //         return false;
+        //     }
+        //     return true;
+        // });
 
     } // end of events
 

@@ -30,7 +30,7 @@ public class UnauthorizedHandler implements AuthenticationEntryPoint {
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
 			throws ServletException, IOException {
 		log.error("▶▶▶ Unauthorized error: {}", authException.getMessage());
-		log.error("▶▶▶ Forward to SSO Login page======>");
+		log.error("▶▶▶ Forward to Login page======>");
 		request.getRequestDispatcher(AuthConst.APP_LOGIN_URL).forward(request, response);
 	}
 

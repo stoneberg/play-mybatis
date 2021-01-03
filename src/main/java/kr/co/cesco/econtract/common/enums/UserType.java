@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum UserType implements CodeEnum {
-    SA("SA"),
+    SA("SA"), // ADMIN
     SD("SD"),
     SC("SC");
 
